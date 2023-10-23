@@ -35,6 +35,23 @@ export const LeftSide = styled.div<imageProps>`
   position: relative;
 `;
 
+export const Text = styled.p`
+  font-size: 1.4rem;
+  width: 100%;
+  margin-top: 1rem;
+  color: #a4a6aa;
+  font-weight: 600;
+
+  & a {
+    color: #02aff4;
+    font-weight: 600;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`;
+
 export const Img = styled.img`
   width: 100%;
   height: 100%;

@@ -37,7 +37,7 @@ export const checkAuthUser = (
 ) => {
   return accountLists.find(
     (account: authProps) =>
-      account.userId === userId && account.password === +password
+      account.email === userId && account.password === password
   );
 };
 

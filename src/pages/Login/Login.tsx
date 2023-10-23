@@ -1,19 +1,25 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { Link } from "react-router-dom";
+
 import { userProps } from "../../@types/types";
 import { checkAuthUser } from "../../helpers/helpers";
+
 import {
-  accountListState,
   authActiveState,
   authUserState,
+  customerListState,
 } from "../../recoils/userAuthState";
+
 import * as S from "./styles";
 import * as C from "../../constants/constants";
 import * as A from "../../assets";
 
+import axios from "axios";
+
 const Login = () => {
-  const accountLists = useRecoilValue(accountListState);
+  const [customers, setCustomers] = useRecoilState(customerListState);
   const [, setAuthActive] = useRecoilState(authActiveState);
   const [, setAuthUser] = useRecoilState(authUserState);
 
@@ -40,7 +46,7 @@ const Login = () => {
       return;
     }
 
-    const checkAuth = checkAuthUser(accountLists, userId, password);
+    const checkAuth = checkAuthUser(customers, userId, password);
 
     if (!checkAuth) {
       setAuthActive(false);
@@ -53,11 +59,16 @@ const Login = () => {
     }
   };
 
-  const generateRandomGuest = () => {
-    const randomIndex = Math.floor(Math.random() * 3);
-    const { userId, password } = accountLists[randomIndex];
-    setAuthInput({ userId, password: String(password) });
-  };
+  console.log(customers);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get("/auth");
+      const datas = await response.data;
+      setCustomers(datas);
+    };
+    fetchData();
+  }, []);
 
   return (
     <S.Container>
@@ -99,6 +110,11 @@ const Login = () => {
               />
             </S.Div>
             <S.Button type="submit">로그인</S.Button>
+            <S.Div>
+              <S.Text>
+                계정이 필요한가요? <Link to="/signup">가입하기</Link>
+              </S.Text>
+            </S.Div>
           </S.Form>
         </S.RightSide>
       </S.Wrapper>

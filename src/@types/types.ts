@@ -56,8 +56,9 @@ export interface bankNameProps {
 
 export interface authProps {
   name: string;
+  email?: string;
   userId: string;
-  password: number;
+  password: any;
   avartar: string;
   address: string;
   likeLists: any;

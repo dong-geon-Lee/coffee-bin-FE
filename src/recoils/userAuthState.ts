@@ -24,6 +24,11 @@ export const authUserState = atom<authProps>({
   default: undefined,
 });
 
+export const customerListState = atom<any>({
+  key: "customerList",
+  default: [],
+});
+
 export const bankAccountState = atom({
   key: "bankAccountState",
   default: "은행을 선택해주세요",
@@ -38,6 +43,18 @@ export const bankOptionState = atom({
   key: "bankOptionState",
   default: "",
 });
+
+// export const getCustomerListState = selector({
+//   key: "getCustomerList",
+//   get: async ({ get }) => {
+//     const response = await axios.get("http://localhost:5000/auth");
+//     const datas = await response.data;
+//     const customers = get(customerList);
+//     const items = datas.slice();
+//     customers.push(items);
+//     return customers;
+//   },
+// });
 
 export const selectedBankState = selector({
   key: "selectedBank",
@@ -79,5 +96,3 @@ export const updatedBankMoneyState = selector({
     };
   },
 });
-
-

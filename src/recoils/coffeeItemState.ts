@@ -51,8 +51,8 @@ export const currentItemState = selector({
       filteredItems.length >= 1 ? filteredItems : existCoffeeItems;
 
     const authUser = get(authUserState);
-    const likeStatus = authUser.likeLists;
-    const cartStatus = authUser.cartLists;
+    const likeStatus = authUser?.likeLists;
+    const cartStatus = authUser?.cartLists;
     const profileStatus = get(paymentListState);
 
     return { homeStatus, likeStatus, cartStatus, profileStatus };

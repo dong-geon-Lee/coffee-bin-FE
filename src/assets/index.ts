@@ -24,3 +24,6 @@ export { default as checked } from "./checked.svg";
 export { default as note } from "./note.svg";
 export { default as payment } from "./payment.svg";
 export { default as image } from "./coffee.jpg";
+export { default as design } from "./cofee-design.jpg";
+export { default as design2 } from "./coffee-back.jpg";
+export { default as leftLanding } from "./coffeeLanding.jpg";

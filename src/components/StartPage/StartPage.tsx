@@ -6,7 +6,7 @@ import * as A from "../../assets";
 const StartPage = ({ handleBookPage, openBook }: openBookProps) => {
   return (
     <S.ImageBox className="book" open={openBook}>
-      <S.Title>
+      {/* <S.Title>
         <S.Strong>Coffee</S.Strong> Book
       </S.Title>
       <S.Img src={A.image} />
@@ -17,7 +17,7 @@ const StartPage = ({ handleBookPage, openBook }: openBookProps) => {
             <S.Button onClick={() => handleBookPage()}>시작하기</S.Button>
           </S.Div>
         </Link>
-      </Router>
+      </Router> */}
     </S.ImageBox>
   );
 };

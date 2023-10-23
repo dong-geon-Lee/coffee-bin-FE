@@ -5,6 +5,10 @@ export interface imageProps {
   img?: string;
 }
 
+export interface landingImg {
+  image?: string;
+}
+
 export interface itemProps {
   items: cartItemProps[];
 }
@@ -15,6 +19,10 @@ export interface itemLengthProps {
 
 export interface openProps {
   open?: boolean;
+}
+
+export interface image {
+  image?: boolean;
 }
 
 export interface openBookProps {

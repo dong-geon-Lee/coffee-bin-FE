@@ -1,34 +1,14 @@
 import { imageProps, openProps } from "../@types/types";
 import styled, { css, keyframes } from "styled-components";
 
-const openBook = keyframes`
-  from {
-    opacity: 0
-  }
-
-  to {
-    opacity: 1
-  }
-`;
-
-const closeBook = keyframes`
-  from {
-    opacity: 1
-  }
-
-  to {
-    opacity: 0
-  }
-`;
-
 export const Container = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 144rem;
+  height: 100rem;
 `;
 
 export const Wrapper = styled.div<openProps>`
-  width: 60rem;
-  height: 80rem;
+  width: 100%;
+  height: 100%;
   box-shadow: 1rem 2rem 4rem rgba(0, 0, 0, 0.25);
   position: relative;
   transition: all 1s ease;
@@ -52,14 +32,6 @@ export const LoginBox = styled.div<imageProps>`
   background-image: url(${(props) => props.loginImg});
   background-size: cover;
   background-position: right;
-  animation: ${(props) =>
-    props.open
-      ? css`
-          ${openBook} 2s alternate
-        `
-      : css`
-          ${closeBook} 1s alternate
-        `};
 `;
 
 export const Div = styled.div<openProps>`

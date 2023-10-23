@@ -3,16 +3,16 @@ import { imageProps } from "../../@types/types";
 import { openProps } from "../../@types/types";
 
 export const ImageBox = styled.div<imageProps>`
-  position: relative;
+  /* position: relative;
   width: 100%;
   height: 100%;
   transition: all 1s ease;
   transform-style: preserve-3d;
-  background-color: #000;
+  background-color: #000; */
 `;
 
 export const Title = styled.h1`
-  position: absolute;
+  /* position: absolute;
   top: 10%;
   left: 50%;
   transform: translate(-50%, -10%);
@@ -21,7 +21,7 @@ export const Title = styled.h1`
   width: 100%;
   text-align: center;
   z-index: 1;
-  letter-spacing: 1px;
+  letter-spacing: 1px; */
 `;
 
 export const Strong = styled.strong`
@@ -29,7 +29,7 @@ export const Strong = styled.strong`
 `;
 
 export const Img = styled.div<imageProps>`
-  position: absolute;
+  /* position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
@@ -50,11 +50,11 @@ export const Img = styled.div<imageProps>`
     background-size: cover;
     background-position: left;
     z-index: 2;
-  }
+  } */
 `;
 
 export const Div = styled.div<openProps>`
-  position: absolute;
+  /* position: absolute;
   bottom: 10%;
   left: 50%;
   transform: translate(-50%, -10%);
@@ -63,11 +63,11 @@ export const Div = styled.div<openProps>`
 
   &.start {
     opacity: 1;
-  }
+  } */
 `;
 
 export const Button = styled.div`
-  padding: 1.4rem 2rem;
+  /* padding: 1.4rem 2rem;
   background-color: #7f553a;
   color: #fff;
   border: none;
@@ -84,5 +84,5 @@ export const Button = styled.div`
 
   &:hover {
     background-color: #855f46;
-  }
+  } */
 `;

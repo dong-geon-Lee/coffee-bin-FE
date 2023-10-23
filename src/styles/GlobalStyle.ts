@@ -17,13 +17,6 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Nanum Myeongjo', serif;
     font-weight: 400;
     line-height: 1.5;
-    overflow: hidden;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
   }
 
   input, button {

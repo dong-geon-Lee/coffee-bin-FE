@@ -173,6 +173,6 @@ export const addCartItems = (
     recordedQty: quantity,
     total: (total = totalPrice * quantity),
     orderDate: formattedDates(randomYears, randomMonths, randomDays),
-    orderUser: authUser.userId,
+    orderUser: authUser?.userId,
   };
 };

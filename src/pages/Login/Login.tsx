@@ -1,27 +1,19 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRecoilState } from "recoil";
+import { authActiveState } from "../../recoils/userAuthState";
+
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 import { userProps } from "../../@types/types";
-import { checkAuthUser } from "../../helpers/helpers";
-
-import {
-  authActiveState,
-  authUserState,
-  customerListState,
-} from "../../recoils/userAuthState";
+import axios from "axios";
 
 import * as S from "./styles";
 import * as C from "../../constants/constants";
 import * as A from "../../assets";
 
-import axios from "axios";
-
 const Login = () => {
-  const [customers, setCustomers] = useRecoilState(customerListState);
   const [, setAuthActive] = useRecoilState(authActiveState);
-  const [, setAuthUser] = useRecoilState(authUserState);
 
   const [authInput, setAuthInput] = useState({
     userId: "",
@@ -38,7 +30,7 @@ const Login = () => {
     });
   };
 
-  const handleAuth = (e: React.FormEvent) => {
+  const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!userId || !password) {
@@ -46,42 +38,27 @@ const Login = () => {
       return;
     }
 
-    const checkAuth = checkAuthUser(customers, userId, password);
+    const response = await axios.post("/auth/signin", {
+      email: userId,
+      password,
+    });
 
-    if (!checkAuth) {
+    const token = response.data;
+    if (!token) {
       setAuthActive(false);
       alert(C.ERROR__INPUT__MESSAGE);
       return;
-    } else {
-      setAuthUser(checkAuth);
-      setAuthActive(true);
-      navigate("/home");
     }
+    setAuthActive(true);
+    navigate("/home");
   };
-
-  console.log(customers);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios.get("/auth");
-      const datas = await response.data;
-      setCustomers(datas);
-    };
-    fetchData();
-  }, []);
 
   return (
     <S.Container>
       <S.Wrapper>
         <S.LeftSide>
           <S.DarkOverlay />
-          {/* <S.Img src={A.leftLanding} alt="image" /> */}
           <S.BackImg image={A.leftLanding} />
-          {/* <S.GuestBox>
-            <S.Button className="guest__btn" onClick={generateRandomGuest}>
-              {C.RANDOM__GUEST__ACCOUNT}
-            </S.Button>
-          </S.GuestBox> */}
         </S.LeftSide>
 
         <S.RightSide image={A.design2}>
@@ -112,7 +89,7 @@ const Login = () => {
             <S.Button type="submit">로그인</S.Button>
             <S.Div>
               <S.Text>
-                계정이 필요한가요? <Link to="/signup">가입하기</Link>
+                계정이 필요한가요? <Link to="/register">가입하기</Link>
               </S.Text>
             </S.Div>
           </S.Form>

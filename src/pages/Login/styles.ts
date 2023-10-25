@@ -83,6 +83,8 @@ export const RightSide = styled.div<landingImg>`
   z-index: 3;
   background-image: url(${(props) => props.image});
   background-color: #f3d5b5;
+  background-size: cover;
+  background-position: center;
 `;
 
 export const Form = styled.form<openProps>`

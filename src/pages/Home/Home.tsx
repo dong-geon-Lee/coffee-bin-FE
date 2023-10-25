@@ -38,9 +38,9 @@ const Home = () => {
     navigate(`/${destination}`);
   };
 
-  useEffect(() => {
-    if (!authActive) navigate("/login");
-  }, [authActive, navigate]);
+  // useEffect(() => {
+  //   if (!authActive) navigate("/login");
+  // }, [authActive, navigate]);
 
   return (
     <S.Container>
@@ -106,7 +106,7 @@ const Home = () => {
           </S.Div>
 
           <S.ContentBox>
-            {homeStatus.map((item: productProps) => (
+            {homeStatus?.map((item: productProps) => (
               <S.Contents key={item.id}>
                 <Link to={`/home/${item.id}`} state={{ product: item }}>
                   <S.ImgBox className="content">

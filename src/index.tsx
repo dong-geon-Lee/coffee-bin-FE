@@ -3,6 +3,8 @@ import { RecoilRoot } from "recoil";
 import App from "./App";
 import GlobalStyle from "./styles/GlobalStyle";
 
+import { BrowserRouter } from "react-router-dom";
+
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
@@ -10,6 +12,8 @@ const root = ReactDOM.createRoot(
 root.render(
   <RecoilRoot>
     <GlobalStyle />
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </RecoilRoot>
 );

@@ -40,7 +40,7 @@ const Product = () => {
 
   const selectedSizeIndex = selectProductSize(product, selectedSize);
   const targetItems = findSameProduct(coffeeItem, id);
-  const activeLikes = addLikeProduct(authUser.likeLists, targetItems);
+  const activeLikes = addLikeProduct(authUser?.likeLists, targetItems);
 
   const handleLikes = () => {
     setUserLikeLists({

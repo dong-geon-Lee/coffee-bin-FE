@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { authActiveState } from "../../recoils/userAuthState";
+import { authActiveState, authTokenState } from "../../recoils/userAuthState";
 import {
   checkedMenuState,
   currentItemState,
@@ -20,6 +20,9 @@ const Home = () => {
   const { homeStatus, likeStatus, cartStatus, profileStatus } =
     useRecoilValue(currentItemState);
 
+  // const token = useRecoilValue(authTokenState);
+  const [, setToken] = useRecoilState(authTokenState);
+
   const navigate = useNavigate();
   const homeItemStatus = homeStatus ? homeStatus.length : 0;
   const likeItemStatus = likeStatus ? likeStatus.length : 0;
@@ -34,7 +37,11 @@ const Home = () => {
   };
 
   const handleNavigate = (destination: string) => {
-    if (destination === "login") setAuthActive(false);
+    if (destination === "login") {
+      setAuthActive(false);
+      localStorage.removeItem("token");
+      setToken(null);
+    }
     navigate(`/${destination}`);
   };
 

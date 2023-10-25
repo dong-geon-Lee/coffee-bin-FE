@@ -1,7 +1,4 @@
 import { useState } from "react";
-import { useRecoilState } from "recoil";
-import { authActiveState } from "../../recoils/userAuthState";
-
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
@@ -13,8 +10,6 @@ import * as C from "../../constants/constants";
 import * as A from "../../assets";
 
 const Register = () => {
-  const [, setAuthActive] = useRecoilState(authActiveState);
-
   const [authInput, setAuthInput] = useState({
     email: "",
     password: "",

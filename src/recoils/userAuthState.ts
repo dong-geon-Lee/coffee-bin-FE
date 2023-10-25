@@ -19,9 +19,14 @@ export const authActiveState = atom({
   default: false,
 });
 
-export const authUserState = atom<authProps>({
+export const authTokenState = atom({
+  key: "authTokenState",
+  default: null,
+});
+
+export const authUserState = atom<authProps | any>({
   key: "authUser",
-  default: undefined,
+  default: "",
 });
 
 export const customerListState = atom<any>({

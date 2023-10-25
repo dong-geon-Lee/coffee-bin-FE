@@ -14,7 +14,7 @@ export const Container = styled.div`
 export const Section = styled.div<itemProps>`
   padding: 2rem 6rem;
   height: 70rem;
-  overflow-y: ${(props) => (props.items.length === 0 ? "none" : "scroll")};
+  overflow-y: ${(props) => (props.items?.length === 0 ? "none" : "scroll")};
 `;
 
 export const Header = styled.header`

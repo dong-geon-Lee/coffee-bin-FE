@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { authActiveState } from "../../recoils/userAuthState";
+import { authActiveState, authTokenState } from "../../recoils/userAuthState";
 
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -14,13 +14,14 @@ import * as A from "../../assets";
 
 const Login = () => {
   const [, setAuthActive] = useRecoilState(authActiveState);
+  const [token, setToken] = useRecoilState<any>(authTokenState);
 
   const [authInput, setAuthInput] = useState({
-    userId: "",
+    email: "",
     password: "",
   });
 
-  const { userId, password } = authInput;
+  const { email, password } = authInput;
   const navigate = useNavigate();
 
   const onChange = (e: userProps) => {
@@ -33,25 +34,39 @@ const Login = () => {
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!userId || !password) {
-      alert(C.EMPTY__INPUT__MESSAGE);
-      return;
-    }
+    try {
+      if (!email || !password) {
+        alert(C.EMPTY__INPUT__MESSAGE);
+        return;
+      }
 
-    const response = await axios.post("/auth/signin", {
-      email: userId,
-      password,
-    });
+      const response = await axios.post("/auth/signin", {
+        email,
+        password,
+      });
 
-    const token = response.data;
-    if (!token) {
-      setAuthActive(false);
-      alert(C.ERROR__INPUT__MESSAGE);
-      return;
+      const accessToken = response.data;
+      if (!accessToken) {
+        setAuthActive(false);
+        alert(C.ERROR__INPUT__MESSAGE);
+        return;
+      }
+
+      localStorage.setItem("token", JSON.stringify(accessToken));
+      setToken(JSON.parse(localStorage.getItem("token") || "").access_token);
+      setAuthActive(true);
+      navigate("/home");
+    } catch (error: any) {
+      throw new Error(error.response.data.message);
     }
-    setAuthActive(true);
-    navigate("/home");
   };
+
+  useEffect(() => {
+    if (token) {
+      navigate("/home");
+    }
+    setToken(JSON.parse(localStorage.getItem("token") || "{}").access_token);
+  }, [token, navigate]);
 
   return (
     <S.Container>
@@ -72,8 +87,8 @@ const Login = () => {
                 type="text"
                 placeholder="아이디를 입력해 주세요"
                 onChange={onChange}
-                value={userId}
-                name="userId"
+                value={email}
+                name="email"
               />
             </S.Div>
             <S.Div>

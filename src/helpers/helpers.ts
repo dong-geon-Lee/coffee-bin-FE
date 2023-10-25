@@ -42,7 +42,7 @@ export const checkAuthUser = (
 };
 
 export const findSelectedBank = (authUser: authProps, bankOption: string) => {
-  return authUser.bankInfo.find((bank: bankProps) => {
+  return authUser.bankInfo?.find((bank: bankProps) => {
     return bank.bankName === bankOption;
   });
 };
@@ -69,7 +69,7 @@ export const calcBankMoney = (
 };
 
 export const calcTotalProduct = (recordedCartItem: cartItemProps[]) => {
-  return recordedCartItem.reduce((acc, cur) => acc + cur.total, 0);
+  return recordedCartItem?.reduce((acc, cur) => acc + cur.total, 0);
 };
 
 export const findFilteredItems = (
@@ -90,7 +90,7 @@ export const findPaymentOrderUser = (
   paymentItems: cartItemProps[],
   authUser: authProps
 ) => {
-  return paymentItems.filter(
+  return paymentItems?.filter(
     (item: cartItemProps) => item.orderUser === authUser.userId
   );
 };
